@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import List from "./List";
 
 
 
@@ -11,12 +12,19 @@ function ToDo() {
         setText(setName);
     }
 
-    function handleAddItem(event) {
-
-        setAddIteam(prev => 
-             [...prev, text ]
-        )
+    function handleAddItem() {
+        addIteam.push(text);
+        setAddIteam(addIteam)
         setText("");
+    }
+
+    function deleteAddItem(id) {
+        setAddIteam(prev => {
+            return prev.filter((item, index) => {
+                return index !== id;
+            })
+        })
+
     }
 
     return (
@@ -32,10 +40,15 @@ function ToDo() {
             </div>
             <div>
                 <ul>
-                    {addIteam.map(item => 
-                         (
-                            <li>{item}</li>
-                            )
+                    {addIteam.map((item, index) =>
+                    (
+                        <List
+                            key={index}
+                            id={index}
+                            item={item}
+                            deleteAddItem={deleteAddItem}
+                        />
+                    )
                     )}
                 </ul>
             </div>
