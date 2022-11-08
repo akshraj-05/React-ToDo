@@ -41,14 +41,14 @@ function ToDo() {
             <div>
                 <ul>
                     {addIteam.map((item, index) =>
-                    (
+                    
                         <List
                             key={index}
                             id={index}
                             item={item}
                             deleteAddItem={deleteAddItem}
                         />
-                    )
+                    
                     )}
                 </ul>
             </div>
